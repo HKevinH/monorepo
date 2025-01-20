@@ -1,0 +1,40 @@
+<div *ngIf="purchases.length === 0" class="no-purchases">
+  <p class="no-purchases-text">No tienes compras registradas.</p>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="addPurchase()"
+    class="add-purchase-button"
+  >
+    <mat-icon>add</mat-icon>
+    Agregar Compra
+  </button>
+</div>
+
+<div *ngIf="purchases.length > 0" class="card-container">
+  <mat-card
+    *ngFor="let purchase of purchases"
+    class="purchase-card"
+    (click)="openPurchaseDetails(purchase)"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ purchase.title }}</mat-card-title>
+      <mat-card-subtitle
+        >Monto Total: {{ purchase.totalAmount | currency }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p class="purchase-date">Fecha: {{ purchase.date | date }}</p>
+      <div class="products-container">
+        <mat-card
+          *ngFor="let product of purchase.details.products"
+          class="product-card"
+        >
+          <mat-card-title>{{ product.name }}</mat-card-title>
+          <p>Cantidad: {{ product.quantity }}</p>
+          <p>Precio Unitario: {{ product.unitPrice | currency }}</p>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,9 @@
+<div
+  class="notification"
+  [class.error]="type === 'error'"
+  [class.warning]="type === 'warning'"
+  [class.info]="type === 'info'"
+  *ngIf="visible"
+>
+  <span>{{ message }}</span>
+</div>

@@ -1,0 +1,45 @@
+<div class="modal-container">
+  <h2 class="modal-title">Agregar Usuario</h2>
+
+  <form class="modal-form">
+    <!-- Campo Nombre -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nombre</mat-label>
+      <input
+        matInput
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Ingrese el nombre"
+        required
+      />
+      <mat-error *ngIf="!name">El nombre es obligatorio</mat-error>
+    </mat-form-field>
+
+    <!-- Campo Correo Electrónico -->
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Correo Electrónico</mat-label>
+      <input
+        matInput
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Ingrese el correo electrónico"
+        type="email"
+        required
+      />
+      <mat-error *ngIf="!email">El correo electrónico es obligatorio</mat-error>
+    </mat-form-field>
+
+    <!-- Acciones -->
+    <div class="modal-actions">
+      <button mat-button color="warn" (click)="close()">Cancelar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="save()"
+        [disabled]="!name || !email"
+      >
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

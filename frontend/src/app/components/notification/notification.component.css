@@ -1,0 +1,77 @@
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #323232;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.12);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideIn 0.5s ease, fadeOut 0.5s 2.5s ease forwards;
+  z-index: 1000;
+}
+
+.notification span {
+  flex: 1;
+}
+
+.notification::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 4px 0 0 4px;
+}
+
+.notification.error {
+  background-color: #f44336;
+  color: white;
+}
+
+.notification.error::before {
+  background-color: #e53935;
+}
+
+.notification.warning {
+  background-color: #ff9800;
+  color: white;
+}
+
+.notification.warning::before {
+  background-color: #fb8c00;
+}
+
+.notification.info {
+  background-color: #2196f3;
+  color: white;
+}
+
+.notification.info::before {
+  background-color: #1e88e5;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Animación de salida */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

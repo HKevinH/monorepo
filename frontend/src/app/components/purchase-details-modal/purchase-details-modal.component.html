@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Detalles de la Compra</h2>
+<div mat-dialog-content class="modal-content">
+  <p><strong>Título:</strong> {{ purchase.title }}</p>
+  <p><strong>Monto Total:</strong> {{ purchase.totalAmount | currency }}</p>
+  <p><strong>Fecha:</strong> {{ purchase.date | date : "longDate" }}</p>
+
+  <h3>Productos:</h3>
+  <mat-list class="products-list">
+    <mat-list-item *ngFor="let product of purchase.details.products">
+      <div mat-line>
+        <strong>{{ product.name }}</strong>
+      </div>
+      <div mat-line>
+        Cantidad: {{ product.quantity }} - Precio:
+        {{ product.unitPrice | currency }}
+      </div>
+    </mat-list-item>
+  </mat-list>
+
+  <p><strong>Estado:</strong></p>
+  <div class="form-group">
+    <label for="status-select" class="status-label">Actualizar Estado</label>
+    <select
+      id="status-select"
+      [(ngModel)]="purchase.details.status"
+      (change)="updateStatus($event)"
+      class="status-select"
+    >
+      <option value="completed">Completado</option>
+      <option value="pending">Pendiente</option>
+      <option value="cancelled">Cancelado</option>
+    </select>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="deletePurchase()">
+    Eliminar
+  </button>
+  <button mat-raised-button color="primary" (click)="close()">Cerrar</button>
+</div>
